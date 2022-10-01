@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/pages/search_page/search_page.dart';
 
 void main() {
   runApp(const Main());
@@ -9,6 +10,8 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return const MaterialApp(
+      home: SearchPage(),
+    );
   }
 }
