@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class SearchBar extends StatelessWidget {
+  static final searchText = ValueNotifier<String>("");
+
+  static final TextEditingController _searchController =
+      TextEditingController();
+
   const SearchBar({super.key});
+
+  static String getSearchText() {
+    return searchText.value;
+  }
 
   OutlineInputBorder _border() {
     return const OutlineInputBorder(
@@ -16,6 +23,11 @@ class SearchBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(left: 10),
       child: TextField(
+        onChanged: (value) {
+          searchText.value = _searchController.text;
+          searchText.notifyListeners();
+        },
+        controller: _searchController,
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.search, color: Colors.grey[900]),
           filled: true,

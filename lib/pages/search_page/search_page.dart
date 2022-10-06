@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/pages/search_page/widgets/search_bar.dart';
+import 'package:weather_app/pages/search_page/widgets/search_results.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -18,7 +18,9 @@ class _SearchPageState extends State<SearchPage> {
           Flexible(
             flex: 1,
             child: IconButton(
+              //TODO execute code when back button is pressed
               onPressed: () {},
+              color: Colors.white,
               icon: const Icon(Icons.arrow_back),
             ),
           ),
@@ -34,9 +36,15 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Column(
         children: [
-          _searchSection(),
+          Flexible(
+            child: _searchSection(),
+          ),
+          const Flexible(
+            child: SearchResults(),
+          ),
         ],
       ),
     );
