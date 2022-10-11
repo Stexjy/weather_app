@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:weather/weather.dart';
 import 'package:weather_app/cloud/weather_manager.dart';
+import 'package:weather_app/pages/city_page/city_page.dart';
 import 'package:weather_app/pages/search_page/widgets/search_bar.dart';
 
 class SearchResults extends StatefulWidget {
@@ -20,6 +22,15 @@ class _SearchResultsState extends State<SearchResults> {
           return Container();
         }
 
+        //TODO credo sia una parte in più con il solo scopo di debugging, rimuoverla in caso
+        /*WeatherManager().getWeatherByCity("‘Ayn Ḩalāqīm,,SY").then((value) {
+          try {
+            log(value.toString());
+          } on OpenWeatherAPIException {
+            log("non trovata");
+          }
+        });*/
+
         List<String> cities =
             WeatherManager.getWeatherCities(SearchBar.getSearchText());
 
@@ -30,6 +41,18 @@ class _SearchResultsState extends State<SearchResults> {
 
             if (index % 2 == 0) {
               return ListTile(
+                onTap: () {
+                  WeatherManager().getWeatherByCity(cityName).then(
+                    (value) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CityPage(weather: value),
+                        ),
+                      );
+                    },
+                  );
+                },
                 textColor: Colors.white,
                 title: Text(cityName),
               );
