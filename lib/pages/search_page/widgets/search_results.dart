@@ -22,15 +22,6 @@ class _SearchResultsState extends State<SearchResults> {
           return Container();
         }
 
-        //TODO credo sia una parte in più con il solo scopo di debugging, rimuoverla in caso
-        /*WeatherManager().getWeatherByCity("‘Ayn Ḩalāqīm,,SY").then((value) {
-          try {
-            log(value.toString());
-          } on OpenWeatherAPIException {
-            log("non trovata");
-          }
-        });*/
-
         List<String> cities =
             WeatherManager.getWeatherCities(SearchBar.getSearchText());
 
